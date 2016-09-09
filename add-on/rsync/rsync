@@ -1,0 +1,6 @@
+#!/bin/sh
+# use export to set library path so we can run copied rsync binary without having to install to read only file system
+
+DIRECTORYPATH=/storage/add-on/rsync/
+export LD_LIBRARY_PATH=$DIRECTORYPATH
+$DIRECTORYPATH/rsync.bin "$@"

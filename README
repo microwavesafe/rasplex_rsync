@@ -1,0 +1,25 @@
+Rsync on Rasplex
+
+I wanted to use my Rasplex install with an external drive to run backups, as this is always on I didn't want to have to run another device and rsync at both ends gives huge speed improvements over rsync over a network filesystem on it's own.
+
+Unfortunately Rasplex has no package manager and although it's based on OpenELEC I couldn't find a way installing the add-ons. To get around this I copied the files and libraries from Raspbian Jessie, added my own add-on folder and create a script to include the local librarys.
+
+All these files were taken from Raspbian Jessie image available at https://www.raspberrypi.org/downloads/raspbian/ you can use the lite image.
+
+1.) download image file and extract
+2.) use fdisk to find root partition
+    $ fdisk -lu 2016-05-27-raspbian-jessie.img 
+    # record start address and create loop back device with offset
+    $ sudo losetup -f --show 2016-05-27-raspbian-jessie.img -o $((137216 * 512)
+    # mount in temporary directory
+    $ sudo mount /dev/loop0 rpi/
+3.) copy rsync, libattr, libacl & libpopt
+    $ cp rpi/usr/bin/rsync add-on/rsync/rsync.bin
+    $ cp rpi/lib/arm-linux-gnueabihf/libacl.so.1.1.0 add-on/rsync/libacl.so.1
+    $ cp rpi/lib/arm-linux-gnueabihf/libattr.so.1.1.0 add-on/rsync/libattr.so.1
+    $ cp rpi/lib/arm-linux-gnueabihf/libpopt.so.0.0.0 add-on/rsync/libpopt.so.0
+4.) copy rsync script
+    $ cp rsync add-on/rsync/
+5.) copy add-on folder to /storage folder on RasPlex over sftp
+
+
