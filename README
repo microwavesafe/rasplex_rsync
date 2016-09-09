@@ -4,7 +4,9 @@ I wanted to use my Rasplex install with an external drive to run backups, as thi
 
 Unfortunately Rasplex has no package manager and although it's based on OpenELEC I couldn't find a way installing the add-ons. To get around this I copied the files and libraries from Raspbian Jessie, added my own add-on folder and create a script to include the local librarys.
 
-All these files were taken from Raspbian Jessie image available at https://www.raspberrypi.org/downloads/raspbian/ you can use the lite image.
+To install this add-on, simply take the add-on folder and copy it to /storage under Rasplex through sftp.
+
+The following are the steps I took to create the folder. All these files were taken from Raspbian Jessie image available at https://www.raspberrypi.org/downloads/raspbian/ you can use the lite image.
 
 1.) download image file and extract
 2.) use fdisk to find root partition
